@@ -15,7 +15,7 @@
         @endforeach
     </ul>
 
-    <a href="{{ route('dashboard') }}">Dashboard</a>
+    {{-- <a href="{{ route('test') }}">Dashboard</a> --}}
 
     @livewire()
 </body>

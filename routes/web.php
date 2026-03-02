@@ -13,4 +13,5 @@ use Illuminate\Support\Facades\Route;
 // controller class and the method -> route goes through controller now
 Route::get('/', [ChirpController::class, 'index']);
 
-Route::get('test/{test}', [TestController::class, 'test'])->name('test');
+// Route::get('test/{test}', [TestController::class, 'test'])->name('test');
+Route::get('test', [TestController::class, 'test']);
