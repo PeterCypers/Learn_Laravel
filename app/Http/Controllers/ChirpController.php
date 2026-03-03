@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 class ChirpController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
         // hardcoded
@@ -52,5 +55,58 @@ class ChirpController extends Controller
         ]);
 
         return redirect('/')->with('success', 'Your chirp has been posted!');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Chirp $chirp)
+    {
+        return view('chirps.edit', compact('chirp'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Chirp $chirp)
+    {
+        $validated = $request->validate([
+            'message' => 'required|string|max:255|min:5',
+        ], [
+            'message.required' => 'Please write something to chirp!',
+            'message.max' => 'Chirps must be 255 characters or less.',
+        ]);
+
+        $chirp->update($validated);
+
+        return redirect('/')->with('success', 'Your chirp has been updated!');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Chirp $chirp)
+    {
+        //$this->authorize('delete', $chirp);
+
+        $chirp->delete();
+
+        return redirect('/')->with('success', 'Your chirp has been deleted!');
     }
 }

@@ -10,6 +10,7 @@
         <!-- Chirp Form -->
         <div class="card bg-base-100 shadow mt-8">
             <div class="card-body">
+                {{-- method post action indicates route: view -> route -> controller --}}
                 <form method="POST" action="/chirps">
                     @csrf
                     <div class="form-control w-full">
@@ -28,7 +29,7 @@
                             </div>
                         @enderror
                     </div>
-
+                    {{-- some error messages are from daisy-UI --}}
                     <div class="mt-4 flex items-center justify-end">
                         <button type="submit" class="btn btn-primary btn-sm">
                             Chirp
