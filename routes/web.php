@@ -15,3 +15,5 @@ Route::get('/', [ChirpController::class, 'index']);
 
 // Route::get('test/{test}', [TestController::class, 'test'])->name('test');
 Route::get('test', [TestController::class, 'test']);
+
+Route::post('/chirps', [ChirpController::class, 'store']);
