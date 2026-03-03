@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\Logout;
+use App\Http\Controllers\Auth\Register;
 use App\Http\Controllers\ChirpController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +23,18 @@ Route::get('/', [ChirpController::class, 'index']);
 // Route::put('/chirps/{chirp}', [ChirpController::class, 'update']);
 // Route::delete('/chirps/{chirp}', [ChirpController::class, 'destroy']);
 
+Route::middleware('auth')->group(function() {
+    Route::resource('/chirps', ChirpController::class)
+    ->only(['store', 'edit', 'update', 'destroy']); // equals the 4 above routes
+});
 
-Route::resource('/chirps', ChirpController::class)
-->only(['store', 'edit', 'update', 'destroy']); // equals the 4 above routes
+// REGISTER ROUTES
+Route::view('/register', 'auth.register')
+    ->middleware('guest')
+    ->name('register');
+Route::post('/register', Register::class)
+    ->middleware('guest');
+
+// LOGOUT only authed user can logout, auth is a middleware offered by Laravel
+Route::post('/logout', Logout::class)
+    ->middleware('auth');
