@@ -57,3 +57,22 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+### Run tests:
+
+php-unit is installed by default run tests using:
+```bash
+./vendor/bin/phpunit
+```
+
+pest install (requires removal of php-unit and some cleanup)
+
+```bash
+composer remove phpunit/phpunit
+composer require pestphp/pest:^3 --dev
+```
+
+```bash
+./vendor/bin/pest tests/Unit
+./vendor/bin/pest tests
+```
